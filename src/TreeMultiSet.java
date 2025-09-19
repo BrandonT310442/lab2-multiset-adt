@@ -10,7 +10,12 @@ public class TreeMultiSet extends MultiSet {
      */
     @Override
     void add(int item) {
-
+        // if multiset is empty, the first value should be the root
+        if (this.root.isEmpty()) {
+            this.root.setRoot(item);
+        } else {
+            this.root.add(item);
+        }
     }
 
     /**
@@ -21,7 +26,7 @@ public class TreeMultiSet extends MultiSet {
      */
     @Override
     void remove(int item) {
-
+        this.root.remove(item);
     }
 
     /**
@@ -32,7 +37,7 @@ public class TreeMultiSet extends MultiSet {
      */
     @Override
     boolean contains(int item) {
-        return false;
+        return this.root.count(item) > 0;
     }
 
     /**
@@ -40,7 +45,7 @@ public class TreeMultiSet extends MultiSet {
      */
     @Override
     boolean isEmpty() {
-        return false;
+        return this.root.isEmpty();
     }
 
     /**
@@ -51,7 +56,7 @@ public class TreeMultiSet extends MultiSet {
      */
     @Override
     int count(int item) {
-        return -1;
+        return this.root.count(item);
     }
 
     /**
@@ -59,6 +64,6 @@ public class TreeMultiSet extends MultiSet {
      */
     @Override
     int size() {
-        return -1;
+        return this.root.length();
     }
 }
